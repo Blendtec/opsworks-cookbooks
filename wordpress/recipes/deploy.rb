@@ -19,15 +19,6 @@
 
 node[:deploy].each do |app_name, deploy|
 
-  git "#{deploy[:deploy_to]}/shared/wp-content" do
-    repository 'https://github.com/Blendtec/blog-content.git'
-    reference 'master'
-    enable_submodules true
-    action :sync
-    user deploy[:user]
-    group deploy[:group]
-  end
-
   template "#{deploy[:deploy_to]}/current/wp-config.php" do
     source 'wp-config.php.erb'
     user 'deploy'
