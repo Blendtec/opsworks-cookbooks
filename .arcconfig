@@ -1,0 +1,5 @@
+{
+  "project_id" : "opsworks-cookbooks",
+  "conduit_uri" : "http://dev.blendtec.com",
+  "arc.land.onto.default" : "develop"
+}
