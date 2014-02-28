@@ -1,0 +1,3 @@
+[submodule "blendfresh"]
+	path = blendfresh
+	url = git@github.com:Blendtec/blendfresh-cookbook.git
