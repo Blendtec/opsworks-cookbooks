@@ -20,7 +20,7 @@ node[:deploy].each do |app_name, deploy|
         end
 
         variables(
-            :propay =>     (deploy[:config][:propay] rescue nil)
+            :propay =>     (node[:config][:propay] rescue nil)
         )
 
         only_if do
