@@ -3,22 +3,14 @@
 # Recipe:: deploy
 #
 
+include_recipe "composer::install"
+
 node[:deploy].each do |app_name, deploy|
 
   if (File.directory?("#{deploy[:deploy_to]}/current/app"))
     app_dir = "app/"
   elsif
     app_dir = "/"
-  end
-
-  script "install_composer" do
-    interpreter "bash"
-    user 'root'
-    cwd "#{deploy[:deploy_to]}/current"
-    code <<-EOH
-    curl -s https://getcomposer.org/installer | php
-    php composer.phar install
-    EOH
   end
 
   #generate database config file
