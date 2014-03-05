@@ -112,7 +112,7 @@ Configure::write('App.encoding', 'UTF-8');
 *	`manager_index()` and `/manager/controller/index`
 *
 */
-Configure::write('Routing.prefixes', array('admin'));
+Configure::write('Routing.prefixes', array(<%= @prefixes %>));
 
 /**
 * Turn off all caching application-wide.
@@ -194,12 +194,12 @@ define('LOG_ERROR', LOG_ERR);
   /**
   * A random string used in security hashing methods.
   */
-  Configure::write('Security.salt', 'DYhG93b0q6yJf2Ix6fsg2gugV4oUfubfW6whv4nfifRg2G0FgaC9mi');
+Configure::write('Security.salt', '<%= @salt %>');
 
   /**
   * A random numeric string (digits only) used to encrypt/decrypt strings.
   */
-  Configure::write('Security.cipherSeed', '7685935029363567646523542496749683645');
+Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
 
   /**
   * Apply timestamps with the last modified time to static assets (js, css, images).

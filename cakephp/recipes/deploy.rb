@@ -51,6 +51,9 @@ node[:deploy].each do |app_name, deploy|
 
     variables(
         :debug => (node['config']['core']['debug'] rescue nil)
+        :salt => (node['config']['security']['salt'] rescue nil)
+        :cipher_seed => (node['config']['security']['cipher_seed'] rescue nil)
+        :prefixes => (node['config']['prefixes'] rescue "'admin'")
     )
 
     only_if do
