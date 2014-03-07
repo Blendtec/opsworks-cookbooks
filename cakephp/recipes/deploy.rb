@@ -7,11 +7,7 @@ include_recipe "composer::install"
 
 node[:deploy].each do |app_name, deploy|
 
-  if (File.directory?("#{deploy[:deploy_to]}/current/app"))
-    app_dir = "app/"
-  elsif
-    app_dir = "/"
-  end
+  app_dir = node[:config][:app_dir] rescue "app/"
 
   #generate database config file
   template "#{deploy[:deploy_to]}/current/#{app_dir}Config/database.php" do
