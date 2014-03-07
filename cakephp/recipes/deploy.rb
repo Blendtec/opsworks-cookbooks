@@ -14,7 +14,7 @@ node[:deploy].each do |app_name, deploy|
   end
 
   #generate database config file
-  template "#{deploy[:deploy_to]}/current/#{app_dir}/Config/database.php" do
+  template "#{deploy[:deploy_to]}/current/#{app_dir}Config/database.php" do
     source 'database.php.erb'
     mode 0440
     group deploy[:group]
@@ -33,12 +33,12 @@ node[:deploy].each do |app_name, deploy|
     )
 
     only_if do
-      File.directory?("#{deploy[:deploy_to]}/current/#{app_dir}/Config")
+      File.directory?("#{deploy[:deploy_to]}/current/#{app_dir}Config")
     end
   end
 
   #generate core config file
-  template "#{deploy[:deploy_to]}/current/#{app_dir}/Config/core.php" do
+  template "#{deploy[:deploy_to]}/current/#{app_dir}Config/core.php" do
     source 'core.php.erb'
     mode 0440
     group deploy[:group]
@@ -57,7 +57,7 @@ node[:deploy].each do |app_name, deploy|
     )
 
     only_if do
-      File.directory?("#{deploy[:deploy_to]}/current/#{app_dir}/Config")
+      File.directory?("#{deploy[:deploy_to]}/current/#{app_dir}Config")
     end
   end
 
@@ -74,7 +74,7 @@ node[:deploy].each do |app_name, deploy|
   end
 
   #set tmp permissions, create if needed
-  directory "#{deploy[:deploy_to]}/current/#{app_dir}/tmp" do
+  directory "#{deploy[:deploy_to]}/current/#{app_dir}tmp" do
     mode 0740
     group deploy[:group]
     if platform?('ubuntu')
@@ -87,7 +87,7 @@ node[:deploy].each do |app_name, deploy|
 
   #create tmp subdirectories
   %w{cache logs sessions tests}.each do |dir|
-    directory "#{deploy[:deploy_to]}/current/#{app_dir}/tmp/#{dir}" do
+    directory "#{deploy[:deploy_to]}/current/#{app_dir}tmp/#{dir}" do
       mode 0740
       group deploy[:group]
       if platform?('ubuntu')
@@ -102,7 +102,7 @@ node[:deploy].each do |app_name, deploy|
 
   #create cache subdirectories
   %w{models persistent views}.each do |dir|
-    directory "#{deploy[:deploy_to]}/current/#{app_dir}/tmp/cache/#{dir}" do
+    directory "#{deploy[:deploy_to]}/current/#{app_dir}tmp/cache/#{dir}" do
       mode 0740
       group deploy[:group]
       if platform?('ubuntu')
@@ -116,9 +116,9 @@ node[:deploy].each do |app_name, deploy|
   end
 
   #if plugins directory exists iterate over each doing migrations for those with migration scripts
-  if File.directory?("#{deploy[:deploy_to]}/current/#{app_dir}/Plugin")
-    Dir.foreach("#{deploy[:deploy_to]}/current/#{app_dir}/Plugin") do |item|
-      next if item == '.' or item == '..'  or Dir["#{deploy[:deploy_to]}/current/#{app_dir}/Plugin/#{item}/Config/Migration"].empty?
+  if File.directory?("#{deploy[:deploy_to]}/current/#{app_dir}Plugin")
+    Dir.foreach("#{deploy[:deploy_to]}/current/#{app_dir}Plugin") do |item|
+      next if item == '.' or item == '..'  or Dir["#{deploy[:deploy_to]}/current/#{app_dir}Plugin/#{item}/Config/Migration"].empty?
       execute 'cake migration' do
         cwd "#{deploy[:deploy_to]}/current/#{app_dir}"
         command "./Console/cake Migrations.migration run all --plugin #{item}"
@@ -134,7 +134,7 @@ node[:deploy].each do |app_name, deploy|
   end
 
   #if app has migrations run them
-  if File.directory?("#{deploy[:deploy_to]}/current/#{app_dir}/Config/Migration")
+  if File.directory?("#{deploy[:deploy_to]}/current/#{app_dir}Config/Migration")
     execute 'cake migration' do
       cwd "#{deploy[:deploy_to]}/current/#{app_dir}"
       command './Console/cake Migrations.migration run all'
