@@ -22,7 +22,7 @@ node[:deploy].each do |app_name, deploy|
 
     variables(
         :key => (node['config']['awssdk']['key'] rescue nil),
-        :secret => (node['config']['awssdk']['secret'] rescue nil),
+        :secret => (node['config']['awssdk']['secret'] rescue nil)
     )
 
     only_if do
