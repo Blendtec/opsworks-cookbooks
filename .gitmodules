@@ -1,3 +1,12 @@
 [submodule "blendfresh"]
 	path = blendfresh
 	url = git@github.com:Blendtec/blendfresh-cookbook.git
+[submodule "apt"]
+	path = apt
+	url = https://github.com/opscode-cookbooks/apt.git
+[submodule "yum"]
+	path = yum
+	url = https://github.com/opscode-cookbooks/yum.git
+[submodule "td-agent"]
+	path = td-agent
+	url = https://github.com/treasure-data/chef-td-agent.git
