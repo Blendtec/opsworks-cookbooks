@@ -10,3 +10,6 @@
 [submodule "td-agent"]
 	path = td-agent
 	url = https://github.com/treasure-data/chef-td-agent.git
+[submodule "newrelic"]
+	path = newrelic
+	url = https://github.com/escapestudios-cookbooks/newrelic.git
