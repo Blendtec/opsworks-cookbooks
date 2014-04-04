@@ -12,20 +12,19 @@ node[:deploy].each do |app_name, deploy|
         :secret => (node['config']['keys']['logger']['secret'] rescue nil),
         :bucket => (node['config']['td_agent']['bucket'] rescue nil),
         :s3_end_point => (node['config']['td_agent']['end_point'] rescue nil),
-        :apache_dir => (node[:apache][:dir] rescue nil),
         :path => (node['td_agent']['path']),
-        :apache_s3_object_key_format => (node['td_agent']['apache_s3_object_key_format']),
-        :apache_buffer_path => (node['td_agent']['apache_buffer_path']),
-        :apache_error_s3_object_key_format => (node['td_agent']['apache_error_s3_object_key_format']),
-        :apache_error_buffer_path => (node['td_agent']['apache_error_buffer_path']),
+        :buffer_chunk_limit => (node['td_agent']['buffer_chunk_limit']),
         :time_slice_format => (node['td_agent']['time_slice_format']),
         :time_slice_wait => (node['td_agent']['time_slice_wait']),
         :time_zone => (node['td_agent']['time_zone']),
-        :buffer_chunk_limit => (node['td_agent']['buffer_chunk_limit']),
-        :access_s3_object_key_format => (node['td_agent']['access_s3_object_key_format']),
-        :access_buffer_path => (node['td_agent']['access_buffer_path']),
-        :access_error_s3_object_key_format => (node['td_agent']['access_error_s3_object_key_format']),
-        :access_error_buffer_path => (node['td_agent']['access_error_buffer_path'])
+        :apache_access_s3_object_key_format => (node['td_agent']['apache_access_s3_object_key_format']),
+        :apache_access_buffer_path => (node['td_agent']['apache_access_buffer_path']),
+        :apache_error_s3_object_key_format => (node['td_agent']['apache_error_s3_object_key_format']),
+        :apache_error_buffer_path => (node['td_agent']['apache_error_buffer_path']),
+        :app_access_s3_object_key_format => (node['td_agent']['app_access_s3_object_key_format']),
+        :app_access_buffer_path => (node['td_agent']['app_access_buffer_path']),
+        :app_error_s3_object_key_format => (node['td_agent']['app_error_s3_object_key_format']),
+        :app_error_buffer_path => (node['td_agent']['app_error_buffer_path'])
     )
     only_if do
       File.directory?('/etc/td-agent/')
