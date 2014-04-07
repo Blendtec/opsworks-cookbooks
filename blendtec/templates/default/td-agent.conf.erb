@@ -34,13 +34,13 @@
   aws_sec_key <%= @secret %>
   s3_bucket <%= @bucket %>
   s3_endpoint <%= @s3_end_point %>
-  path logs/
-  s3_object_key_format %{path}access/%{hostname}/apache/ts=%{time_slice}/access_%{index}.%{file_extension}
-  buffer_path /var/log/td-agent/s3.apache.access
-  time_slice_format %Y%m%d%H
-  time_slice_wait 10m
-  utc
-  buffer_chunk_limit 256m
+  path <%= @path %>
+  s3_object_key_format <%= @s3_object_key_format %>
+  buffer_path <%= @buffer_path %>
+  time_slice_format <%= @time_slice_format %>
+  time_slice_wait <%= @time_slice_wait %>
+  <%= @time_zone %>
+  buffer_chunk_limit <%= @buffer_chunk_limit %>
 </match>
 
 ####
@@ -63,13 +63,13 @@
   aws_sec_key <%= @secret %>
   s3_bucket <%= @bucket %>
   s3_endpoint <%= @s3_end_point %>
-  path logs/
-  s3_object_key_format %{path}error/%{hostname}/apache/ts=%{time_slice}/errors_%{index}.%{file_extension}
-  buffer_path /var/log/td-agent/s3.apache.error
-  time_slice_format %Y%m%d%H
-  time_slice_wait 10m
-  utc
-  buffer_chunk_limit 256m
+  path <%= @path %>
+  s3_object_key_format <%= @s3_object_key_format %>
+  buffer_path <%= @buffer_path %>
+  time_slice_format <%= @time_slice_format %>
+  time_slice_wait <%= @time_slice_wait %>
+  <%= @time_zone %>
+  buffer_chunk_limit <%= @buffer_chunk_limit %>
 </match>
 
 ####
@@ -92,13 +92,13 @@
   aws_sec_key <%= @secret %>
   s3_bucket <%= @bucket %>
   s3_endpoint <%= @s3_end_point %>
-  path logs/
-  s3_object_key_format %{path}access/%{hostname}/<%= @application %>/ts=%{time_slice}/access_%{index}.%{file_extension}
-  buffer_path /var/log/td-agent/s3.<%= @application %>.access
-  time_slice_format %Y%m%d%H
-  time_slice_wait 10m
-  utc
-  buffer_chunk_limit 256m
+  path <%= @path %>
+  s3_object_key_format <%= @s3_object_key_format %>
+  buffer_path <%= @buffer_path %>
+  time_slice_format <%= @time_slice_format %>
+  time_slice_wait <%= @time_slice_wait %>
+  <%= @time_zone %>
+  buffer_chunk_limit <%= @buffer_chunk_limit %>
 </match>
 
 ####
@@ -121,14 +121,15 @@
   aws_sec_key <%= @secret %>
   s3_bucket <%= @bucket %>
   s3_endpoint <%= @s3_end_point %>
-  path logs/
-  s3_object_key_format %{path}error/%{hostname}/<%= @application %>/ts=%{time_slice}/errors_%{index}.%{file_extension}
-  buffer_path /var/log/td-agent/s3.<%= @application %>.error
-  time_slice_format %Y%m%d%H
-  time_slice_wait 10m
-  utc
-  buffer_chunk_limit 256m
+  path <%= @path %>
+  s3_object_key_format <%= @s3_object_key_format %>
+  buffer_path <%= @buffer_path %>
+  time_slice_format <%= @time_slice_format %>
+  time_slice_wait <%= @time_slice_wait %>
+  <%= @time_zone %>
+  buffer_chunk_limit <%= @buffer_chunk_limit %>
 </match>
+
 
 
 

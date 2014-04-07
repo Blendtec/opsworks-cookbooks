@@ -12,7 +12,14 @@ node[:deploy].each do |app_name, deploy|
         :secret => (node['config']['keys']['logger']['secret'] rescue nil),
         :bucket => (node['config']['logging']['bucket'] rescue nil),
         :s3_end_point => (node['config']['logging']['end_point'] rescue nil),
-        :apache_dir => (node[:apache][:dir] rescue nil)
+        :apache_dir => (node[:apache][:dir] rescue nil),
+        :path => (node['td_agent'][path]),
+        :s3_object_key_format => (node['td_agent'][s3_object_key_format]),
+        :buffer_path => (node['td_agent'][buffer_path]),
+        :time_slice_format => (node['td_agent'][time_slice_format]),
+        :time_slice_wait => (node['td_agent'][time_slice_wait]),
+        :time_zone => (node['td_agent'][time_zone]),
+        :buffer_chunk_limit => (node['td_agent'][buffer_chunk_limit])
     )
     only_if do
       File.directory?('/etc/td-agent/')
