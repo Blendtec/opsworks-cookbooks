@@ -6,7 +6,7 @@
 include_recipe "composer::install"
 
 node[:deploy].each do |app_name, deploy|
-
+  Chef::Log.info("CakePHP deploy #{app_name} to #{deploy[:deploy_to]}/current/#{app_name}")
   app_dir = node[:config][:app_dir] rescue "app/"
 
   #generate database config file
@@ -115,6 +115,7 @@ node[:deploy].each do |app_name, deploy|
   if File.directory?("#{deploy[:deploy_to]}/current/#{app_dir}Plugin")
     Dir.foreach("#{deploy[:deploy_to]}/current/#{app_dir}Plugin") do |item|
       next if item == '.' or item == '..'  or Dir["#{deploy[:deploy_to]}/current/#{app_dir}Plugin/#{item}/Config/Migration"].empty?
+      Chef::Log.info("Running migrations for #{item}")
       execute 'cake migration' do
         cwd "#{deploy[:deploy_to]}/current/#{app_dir}"
         command "./Console/cake Migrations.migration run all --plugin #{item}"
@@ -131,6 +132,7 @@ node[:deploy].each do |app_name, deploy|
 
   #if app has migrations run them
   if File.directory?("#{deploy[:deploy_to]}/current/#{app_dir}Config/Migration")
+    Chef::Log.info("Running migrations for app")
     execute 'cake migration' do
       cwd "#{deploy[:deploy_to]}/current/#{app_dir}"
       command './Console/cake Migrations.migration run all'
