@@ -31,13 +31,10 @@ node[:deploy].each do |app_name, deploy|
     end
   end
 
-  file "/var/log/apache2/access.log" do
-    mode "0644"
-    action :touch
-  end
+  group "adm" do
+    action :modify
+    members "td-agent"
+    append true
+   end
 
-  file "/var/log/apache2/error.log" do
-    mode "0644"
-    action :touch
-  end
 end
