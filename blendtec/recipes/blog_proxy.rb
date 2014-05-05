@@ -5,7 +5,7 @@ node[:deploy].each do |app_name, deploy|
     Chef::Log.info("modifying #{node[:apache][:dir]}/sites-available/#{app_name}.conf")
     block do
       rc = Chef::Util::FileEdit.new("#{node[:apache][:dir]}/sites-available/#{app_name}.conf")
-      proxy_line = "  ProxyPass /blog http://#{node['config']['blog']['ip']}\n  ProxyPassReverse /blog http://#{node['config']['blog']['ip']}"
+      proxy_line = "  ProxyPass /blog http://#{node['config']['blog']['ip']}\n  ProxyPassReverse /blog http://#{node['config']['blog']['ip']}\n ProxyPreserveHost On"
       rc.insert_line_after_match(/^.*\DocumentRoot\b.*$/, proxy_line)
       rc.write_file
     end
