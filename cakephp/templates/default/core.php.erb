@@ -286,3 +286,10 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   'duration' => $duration
   ));
 
+  Cache::config('long', array(
+  'engine' => $engine,
+  'duration' => '+1 week',
+  'probability' => 100,
+  'serialize' => ($engine === 'File'),
+  'path' => CACHE . 'long' . DS,
+  ));
