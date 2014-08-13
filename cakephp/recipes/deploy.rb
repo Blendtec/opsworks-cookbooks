@@ -97,7 +97,7 @@ node[:deploy].each do |app_name, deploy|
   end
 
   #create cache subdirectories
-  %w{models persistent views long}.each do |dir|
+  %w{models persistent views long short}.each do |dir|
     directory "#{deploy[:deploy_to]}/current/#{app_dir}tmp/cache/#{dir}" do
       mode 0740
       group deploy[:group]
