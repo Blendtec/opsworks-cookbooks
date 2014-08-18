@@ -294,7 +294,7 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   'path' => CACHE . 'long' . DS,
   ));
   
-  Cache::config('long', array(
+  Cache::config('short', array(
   'engine' => $engine,
   'duration' => '+1 hour',
   'probability' => 100,
