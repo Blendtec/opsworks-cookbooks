@@ -118,7 +118,7 @@ Configure::write('Routing.prefixes', array(<%= @prefixes %>));
 * Turn off all caching application-wide.
 *
 */
-//Configure::write('Cache.disable', true);
+Configure::write('Cache.disable', false);
 
 /**
 * Enable cache checking.
@@ -129,7 +129,7 @@ Configure::write('Routing.prefixes', array(<%= @prefixes %>));
 * or in each action using $this->cacheAction = true.
 *
 */
-//Configure::write('Cache.check', true);
+Configure::write('Cache.check', true);
 
 /**
 * Enable cache view prefixes.
@@ -284,4 +284,20 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   'path' => CACHE . 'models' . DS,
   'serialize' => ($engine === 'File'),
   'duration' => $duration
+  ));
+
+  Cache::config('long', array(
+  'engine' => $engine,
+  'duration' => '+1 week',
+  'probability' => 100,
+  'serialize' => ($engine === 'File'),
+  'path' => CACHE . 'long' . DS,
+  ));
+  
+  Cache::config('long', array(
+  'engine' => $engine,
+  'duration' => '+1 hour',
+  'probability' => 100,
+  'serialize' => ($engine === 'File'),
+  'path' => CACHE . 'short' . DS,
   ));
