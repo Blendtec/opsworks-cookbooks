@@ -9,7 +9,7 @@ node[:deploy].each do |app_name, deploy|
   app_dir = node[:config][:app_dir] rescue "app/"
 
   #generate awssdk config file
-  template "#{deploy[:deploy_to]}/current/#{app_dir}Vendor/AwsSdk/config.inc.php" do
+  template "#{deploy[:deploy_to]}/current/#{app_dir}Vendor/amazonwebservices/aws-sdk-for-php/config.inc.php" do
     source 'config.inc.php.erb'
     mode 0440
     group deploy[:group]
@@ -26,7 +26,7 @@ node[:deploy].each do |app_name, deploy|
     )
 
     only_if do
-      File.directory?("#{deploy[:deploy_to]}/current/#{app_dir}Vendor/AwsSdk")
+      File.directory?("#{deploy[:deploy_to]}/current/#{app_dir}Vendor/amazonwebservices/aws-sdk-for-php")
     end
   end
 
