@@ -71,7 +71,7 @@ node[:deploy].each do |app_name, deploy|
 
     variables(
         :key => (node['config']['email']['ses_key'] rescue nil),
-        :secret => (node['config']['email']['ses_secret'] rescue nil)
+        :secret => (node['config']['email']['ses_secret'] rescue nil),
         :region => (node['config']['email']['ses_region'] rescue nil)
     )
 
