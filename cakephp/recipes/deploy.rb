@@ -51,7 +51,7 @@ node[:deploy].each do |app_name, deploy|
         :cipher_seed => (node['config']['security']['cipher_seed'] rescue nil),
         :prefixes => (node['config']['prefixes'] rescue "'admin'"),
         :cache_engine => (node['config']['cache']['engine'] rescue nil),
-        :cache_server => (node['config']['cache']['server'] rescue nil),
+        :cache_server => (node['config']['cache']['server'] rescue nil)
     )
 
     only_if do
