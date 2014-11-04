@@ -188,6 +188,11 @@ define('LOG_ERROR', LOG_ERR);
   'defaults' => 'cache',
     'handler' => array(
         'config' => 'sessions'
+    ),
+    'checkAgent' => true,
+    'ini' => array(
+        'session.cookie_secure' => false,
+        'session.cookie_httponly' => true,
     )
   ));
 
@@ -305,3 +310,5 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   'path' => CACHE . 'short' . DS,
   'servers' => array($server)
   ));
+
+  Cache::config('sessions', array('engine' => $engine,'duration'=> 3600,/*'prefix' =>'es',*/ 'servers' => array(array($server), 'compress' => false));
