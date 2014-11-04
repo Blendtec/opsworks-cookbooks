@@ -311,4 +311,8 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   'servers' => array($server)
   ));
 
-  Cache::config('sessions', array('engine' => $engine,'duration'=> 3600,/*'prefix' =>'es',*/ 'servers' => array(array($server), 'compress' => false));
+  Cache::config('sessions', array(
+    'engine' => $engine,
+    'duration'=> 3600,
+    'servers' => array($server), 
+    'compress' => false));
