@@ -185,9 +185,14 @@ define('LOG_ERROR', LOG_ERR);
   *
   */
   Configure::write('Session', array(
-  'defaults' => 'database',
+  'defaults' => 'cache',
     'handler' => array(
-        'model'=>'session'
+        'config' => 'sessions'
+    ),
+    'checkAgent' => true,
+    'ini' => array(
+        'session.cookie_secure' => false,
+        'session.cookie_httponly' => true,
     )
   ));
 
@@ -251,12 +256,12 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   *       Please check the comments in boostrap.php for more info on the cache engines available
   *       and their setttings.
   */
-  $engine = 'File';
-
+  $engine = '<%= @cache_engine %>';
+  $server = '<%= @cache_server %>'; 
   // In development mode, caches should expire quickly.
   $duration = '+999 days';
   if (Configure::read('debug') >= 1) {
-  $duration = '+10 seconds';
+    $duration = '+10 seconds';
   }
 
   // Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
@@ -267,11 +272,12 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   * object listings, and translation cache files are stored with this configuration.
   */
   Cache::config('_cake_core_', array(
-  'engine' => $engine,
-  'prefix' => $prefix . 'cake_core_',
-  'path' => CACHE . 'persistent' . DS,
-  'serialize' => ($engine === 'File'),
-  'duration' => $duration
+    'engine' => $engine,
+    'prefix' => $prefix . 'cake_core_',
+    'path' => CACHE . 'persistent' . DS,
+    'serialize' => ($engine === 'File'),
+    'duration' => $duration,
+    'servers' => array($server)
   ));
 
   /**
@@ -283,7 +289,8 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   'prefix' => $prefix . 'cake_model_',
   'path' => CACHE . 'models' . DS,
   'serialize' => ($engine === 'File'),
-  'duration' => $duration
+  'duration' => $duration,
+  'servers' => array($server)
   ));
 
   Cache::config('long', array(
@@ -292,6 +299,7 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   'probability' => 100,
   'serialize' => ($engine === 'File'),
   'path' => CACHE . 'long' . DS,
+  'servers' => array($server)
   ));
   
   Cache::config('short', array(
@@ -300,4 +308,12 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   'probability' => 100,
   'serialize' => ($engine === 'File'),
   'path' => CACHE . 'short' . DS,
+  'servers' => array($server)
+  ));
+
+  Cache::config('sessions', array(
+    'engine' => $engine,
+    'duration'=> 3600,
+    'servers' => array($server), 
+    'compress' => false
   ));
