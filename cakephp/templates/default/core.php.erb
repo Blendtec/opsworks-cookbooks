@@ -261,7 +261,7 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   // In development mode, caches should expire quickly.
   $duration = '+999 days';
   if (Configure::read('debug') >= 1) {
-    $duration = '+10 seconds';
+    $duration = '+10 minutes';
   }
 
   // Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
@@ -313,6 +313,7 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
 
   Cache::config('sessions', array(
     'engine' => $engine,
+    'prefix' => $prefix,
     'duration'=> 3600,
     'servers' => array($server), 
     'compress' => false
