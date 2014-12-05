@@ -172,6 +172,5 @@ node[:deploy].each do |app_name, deploy|
       returns 0
     end
   end
-
+  execute 'sleep 2m'
 end
-
