@@ -172,6 +172,4 @@ node[:deploy].each do |app_name, deploy|
       returns 0
     end
   end
-  Chef::Log.info("Sleeping")
-  execute 'sleep 2m'
 end
