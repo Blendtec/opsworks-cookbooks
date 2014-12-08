@@ -51,7 +51,8 @@ node[:deploy].each do |app_name, deploy|
         :cipher_seed => (node['config']['security']['cipher_seed'] rescue nil),
         :prefixes => (node['config']['prefixes'] rescue "'admin'"),
         :cache_engine => (node['config']['cache']['engine'] rescue nil),
-        :cache_server => (node['config']['cache']['server'] rescue nil),
+        :cache_session_server => (node['config']['cache']['session_server'] rescue nil),
+        :cache_data_server => (node['config']['cache']['data_server'] rescue nil),
         :hostname => (node[:opsworks][:instance][:hostname] rescue nil)
     )
 
@@ -171,6 +172,6 @@ node[:deploy].each do |app_name, deploy|
       returns 0
     end
   end
-
+  Chef::Log.info("Sleeping")
+  execute 'sleep 2m'
 end
-
