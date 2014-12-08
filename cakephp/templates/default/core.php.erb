@@ -77,6 +77,13 @@ Configure::write('Exception', array(
 'renderer' => 'ExceptionRenderer',
 'log' => true
 ));
+if (file_exists(APP . 'Plugin' . DS . 'Seo')) {
+  Configure::write('Exception', array(
+  'handler' => 'SeoExceptionHandler::handle',
+  'renderer' => 'ExceptionRenderer',
+  'log' => true
+  ));
+}
 
 /**
 * Application wide charset encoding
