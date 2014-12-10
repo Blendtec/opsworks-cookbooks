@@ -7,6 +7,8 @@ include_recipe "composer::install"
 
 node[:deploy].each do |app_name, deploy|
   Chef::Log.info("CakePHP deploy #{app_name} to #{deploy[:deploy_to]}/current/#{app_name}")
+  Chef::Log.info(Time.now.to_i)
+
   app_dir = node[:config][:app_dir] rescue "app/"
 
   #generate database config file
