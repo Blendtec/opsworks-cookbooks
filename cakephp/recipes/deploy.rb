@@ -7,7 +7,6 @@ include_recipe "composer::install"
 
 node[:deploy].each do |app_name, deploy|
   Chef::Log.info("CakePHP deploy #{app_name} to #{deploy[:deploy_to]}/current/#{app_name}")
-  Chef::Log.info(Time.now.to_i)
 
   app_dir = node[:config][:app_dir] rescue "app/"
 
@@ -55,7 +54,8 @@ node[:deploy].each do |app_name, deploy|
         :cache_engine => (node['config']['cache']['engine'] rescue nil),
         :cache_session_server => (node['config']['cache']['session_server'] rescue nil),
         :cache_data_server => (node['config']['cache']['data_server'] rescue nil),
-        :hostname => (node[:opsworks][:instance][:hostname] rescue nil)
+        :hostname => (node[:opsworks][:instance][:hostname] rescue nil),
+        :timestamp => Time.now.to_i
     )
 
     only_if do

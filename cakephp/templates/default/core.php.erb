@@ -273,7 +273,7 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   }
 
   // Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
-  $corePrefix = '<%= @hostname %>_myapp_';
+  $corePrefix = '<%= @hostname %>_ <%= @timestamp %>';
   $prefix = "blendtec_";
   /**
   * Configure the cache used for general framework caching.  Path information,
