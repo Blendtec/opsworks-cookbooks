@@ -55,7 +55,8 @@ node[:deploy].each do |app_name, deploy|
         :cache_session_server => (node['config']['cache']['session_server'] rescue nil),
         :cache_data_server => (node['config']['cache']['data_server'] rescue nil),
         :hostname => (node[:opsworks][:instance][:hostname] rescue nil),
-        :timestamp => Time.now.to_i
+        :timestamp => Time.now.to_i,
+        :cms_key => (node['config']['keys']['cms']['key'] rescue nil),
     )
 
     only_if do
