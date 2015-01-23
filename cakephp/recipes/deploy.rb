@@ -26,7 +26,11 @@ node[:deploy].each do |app_name, deploy|
         :host =>     (deploy[:database][:host] rescue nil),
         :user =>     (deploy[:database][:username] rescue nil),
         :password => (deploy[:database][:password] rescue nil),
-        :db =>       (deploy[:database][:database] rescue nil)
+        :db =>       (deploy[:database][:database] rescue nil),
+        :emailParseDataSource => (deploy[:emailParsing][:datasource] rescue nil),
+        :emailParseServer =>     (deploy[:emailParsing][:server] rescue nil),
+        :emailParseUser =>       (deploy[:emailParsing][:username] rescue nil),
+        :emailParsePassword =>   (deploy[:emailParsing][:password] rescue nil)
     )
 
     only_if do

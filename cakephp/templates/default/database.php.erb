@@ -9,4 +9,16 @@
             'database' => '<%= @db%>',
 	    'encoding' => 'UTF8',
         );
+
+        public $emailTicket = array(
+            'datasource' => 'Emails.ImapSource',
+            'server' => '<%= @emailParseServer%>',
+            'connect' => 'imap/tls/novalidate-cert',
+            'username' => '<%= @emailParseUsername%>',
+            'password' => '<%= @emailParsePassword%>',
+            'port' => '993',
+            'ssl' => true,
+            'encoding' => 'UTF-8',
+            'error_handler' => 'php',
+        );
     }
