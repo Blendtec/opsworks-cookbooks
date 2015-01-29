@@ -60,7 +60,13 @@ node[:deploy].each do |app_name, deploy|
         :cache_data_server => (node['config']['cache']['data_server'] rescue nil),
         :hostname => (node[:opsworks][:instance][:hostname] rescue nil),
         :timestamp => Time.now.to_i,
-        :cms_key => (node['config']['keys']['cms']['key'] rescue nil)
+        :cms_key => (node['config']['keys']['cms']['key'] rescue nil),
+        :avatax_account_number_test => (node['config']['avalar']['accountNumberTest'] rescue nil),
+        :avatax_license_key_test => (node['config']['avalar']['licenseKeyTest'] rescue nil),
+        :avatax_service_url_test => (node['config']['avalar']['serviceURLTest'] rescue nil),
+        :avatax_account_number_live => (node['config']['avalar']['accountNumberLive'] rescue nil),
+        :avatax_license_key_live => (node['config']['avalar']['licenseKeyLive'] rescue nil),
+        :avatax_service_url_live => (node['config']['avalar']['serviceURLLive'] rescue nil)
     )
 
     only_if do
