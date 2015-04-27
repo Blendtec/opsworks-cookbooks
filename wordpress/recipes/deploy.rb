@@ -2,7 +2,7 @@
 # Cookbook Name:: wordpress
 # Recipe:: default
 #
-# Copyright 2013, K-TEC, Inc.
+# Copyright 2013, Blendtec Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
