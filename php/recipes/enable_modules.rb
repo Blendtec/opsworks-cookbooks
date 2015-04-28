@@ -1,11 +1,11 @@
 #
-# Cookbook Name:: composer 
-# Recipe:: install
+# Cookbook Name:: php 
+# Recipe:: enable_modules
 #
 
 node[:deploy].each do |app_name, deploy|
 
-  script "install_composer" do
+  script "enable_modules" do
     interpreter "bash"
     user 'root'
     cwd "#{deploy[:deploy_to]}/current"
