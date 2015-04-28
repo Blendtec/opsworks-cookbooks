@@ -1,4 +1,4 @@
 name "composer"
 description "install composer"
 
-depends "php"
+depends "enable_modules"
