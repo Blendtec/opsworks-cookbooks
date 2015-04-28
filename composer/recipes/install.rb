@@ -10,6 +10,8 @@ node[:deploy].each do |app_name, deploy|
     user 'root'
     cwd "#{deploy[:deploy_to]}/current"
     code <<-EOH
+    php5enmod mcrypt
+    service apache2 restart
     curl -s https://getcomposer.org/installer | php
     php composer.phar install
     EOH
