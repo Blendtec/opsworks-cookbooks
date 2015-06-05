@@ -77,7 +77,7 @@ Configure::write('Exception', array(
 'renderer' => 'ExceptionRenderer',
 'log' => true
 ));
-if (file_exists(APP . 'Plugin' . DS . 'Seo')) {
+if (class_exists('SeoExceptionHandler')) {
   Configure::write('Exception', array(
   'handler' => 'SeoExceptionHandler::handle',
   'renderer' => 'ExceptionRenderer',
