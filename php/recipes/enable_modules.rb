@@ -1,18 +1,17 @@
 #
-# Cookbook Name:: composer 
-# Recipe:: install
+# Cookbook Name:: php 
+# Recipe:: enable_modules
 #
 
 node[:deploy].each do |app_name, deploy|
 
-  script "install_composer" do
+  script "enable_modules" do
     interpreter "bash"
     user 'root'
     cwd "#{deploy[:deploy_to]}/current"
     code <<-EOH
     php5enmod mcrypt
-    curl -s https://getcomposer.org/installer | php
-    php composer.phar install
+    service apache2 restart
     EOH
   end
 
