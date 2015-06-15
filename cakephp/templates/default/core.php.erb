@@ -319,20 +319,3 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
     'servers' => array($sessionServer), 
     'compress' => false
   ));
-
-  //from usaepay
-  Configure::write('CompleteGateway', array(
-      'key' => '<%= @cms_key %>'
-    )
-  );
-
-  //Avalara Tax stuff
-  Configure::write('AvalaraTax', array(
-      'accountNumberTest' => '<%= @avatax_account_number_test %>',
-      'licenseKeyTest' => '<%= @avatax_license_key_test %>',
-      'serviceURLTest' => '<%= @avatax_service_url_test %>',
-      'accountNumberLive' => '<%= @avatax_account_number_live %>',
-      'licenseKeyLive' => '<%= @avatax_license_key_live %>',
-      'serviceURLLive' => '<%= @avatax_service_url_live %>'
-    )
-  );
