@@ -77,13 +77,6 @@ Configure::write('Exception', array(
 'renderer' => 'ExceptionRenderer',
 'log' => true
 ));
-if (class_exists('SeoExceptionHandler')) {
-  Configure::write('Exception', array(
-  'handler' => 'SeoExceptionHandler::handle',
-  'renderer' => 'ExceptionRenderer',
-  'log' => true
-  ));
-}
 
 /**
 * Application wide charset encoding
