@@ -93,7 +93,7 @@ node[:deploy].each do |app_name, deploy|
         :email_parsing_backlog => (node['config']['emailParse']['backlog'] rescue nil),
         :strongview_username => (node['config']['strongview']['username'] rescue nil),
         :strongview_password => (node['config']['strongview']['password'] rescue nil),
-        :strongview_organization => (node['config']['strongview']['username'] rescue nil),
+        :strongview_organization => (node['config']['strongview']['organization'] rescue nil),
         :cms_secret1 => (node['config']['cms']['secret1'] rescue nil),
         :cms_secret2 => (node['config']['cms']['secret2'] rescue nil),
         :cms_secret3 => (node['config']['cms']['secret3'] rescue nil),
