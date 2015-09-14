@@ -190,9 +190,11 @@ define('LOG_ERROR', LOG_ERR);
         'config' => 'sessions'
     ),
     'checkAgent' => true,
+    'timeout' => 43200,
+    'cookieTimeout' => 43200,
     'ini' => array(
         'session.cookie_secure' => false,
-        'session.cookie_httponly' => true,
+        'session.cookie_httponly' => true
     )
   ));
 
@@ -258,7 +260,7 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   */
   $engine = '<%= @cache_engine %>';
   $dataServer = '<%= @cache_data_server %>';
-  $sessionServer = '<%= @cache_session_server %>'; 
+  $sessionServer = '<%= @cache_session_server %>';
   // In development mode, caches should expire quickly.
   $duration = '+1 days';
   if (Configure::read('debug') >= 1) {
@@ -302,7 +304,7 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   'path' => CACHE . 'long' . DS,
   'servers' => array($dataServer)
   ));
-  
+
   Cache::config('short', array(
   'engine' => $engine,
   'duration' => '+1 hour',
@@ -315,7 +317,7 @@ Configure::write('Security.cipherSeed', '<%= @cipher_seed %>');
   Cache::config('sessions', array(
     'engine' => $engine,
     'prefix' => $prefix,
-    'duration'=> 3600,
-    'servers' => array($sessionServer), 
+    'duration'=> '+30 day',
+    'servers' => array($sessionServer),
     'compress' => false
   ));
