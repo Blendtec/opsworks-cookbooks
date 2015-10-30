@@ -81,6 +81,9 @@ node[:deploy].each do |app_name, deploy|
 
     variables(
         :cms_key => (node['config']['keys']['cms']['key'] rescue nil),
+        :affirm_public_api_key => (node['config']['affirm']['publicAPIKey'] rescue nil),
+        :affirm_private_api_key => (node['config']['affirm']['privateAPIKey'] rescue nil),
+        :affirm_financial_product_key => (node['config']['affirm']['financialProductKey'] rescue nil),
         :avatax_account_number_test => (node['config']['avalar']['accountNumberTest'] rescue nil),
         :avatax_license_key_test => (node['config']['avalar']['licenseKeyTest'] rescue nil),
         :avatax_service_url_test => (node['config']['avalar']['serviceURLTest'] rescue nil),
