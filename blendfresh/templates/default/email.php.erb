@@ -1,0 +1,33 @@
+<?php
+/**
+ * Email Configuration
+ *
+ * PHP Version 5
+ *
+ * @category Configuration
+ * @package  Residential
+ * @author   Blendtec <noreply@blendtec.com>
+ * @license  proprietary http://www.blendtec.com
+ * @link     http://www.blendtec.com
+ */
+class EmailConfig {
+
+	public $default = array (
+		'from' => array ('support@blendfresh.com' => 'Blendfresh'),
+		'replyTo' => 'support@blendfresh.com',
+		'emailFormat' => 'both',
+		'transport' => 'AmazonSESTransport.AmazonSES',
+		'log' => true,
+		'Amazon.SES.Key' => '<%= @key %>',
+		'Amazon.SES.Secret' => '<%= @secret %>',
+		'Amazon.SES.Region' => '<%= @region %>'
+	);
+
+	public $debug = array (
+		'from' => array ('test@blendfresh.com' => 'Blendfresh'),
+		'replyTo' => 'test@blendfresh.com',
+		'emailFormat' => 'html',
+		'transport' => 'Debug',
+		'log' => true,
+	);
+}
