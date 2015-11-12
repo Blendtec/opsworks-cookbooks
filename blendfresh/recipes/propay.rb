@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: blendfresh
-# Recipe:: deploy_setup
+# Recipe:: propay
 #
 
 include_recipe "composer::install"
