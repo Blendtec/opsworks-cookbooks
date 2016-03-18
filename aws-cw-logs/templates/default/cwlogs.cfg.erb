@@ -1,0 +1,45 @@
+# Reference located at http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/AgentReference.html
+[general]
+# Path to the AWSLogs agent's state file. Agent uses this file to maintain
+# client side state across its executions.
+state_file = /var/awslogs/state/agent-state
+
+
+## Each log file is defined in its own section. The section name doesn't
+## matter as long as its unique within this file.
+#
+#[kern.log]
+#
+## Path of log file for the agent to monitor and upload.
+#
+#file = /var/log/kern.log
+#
+## Name of the destination log group.
+#
+#log_group_name = kern.log
+#
+## Name of the destination log stream.
+#
+#log_stream_name = {instance_id}
+#
+## Format specifier for timestamp parsing.
+#
+#datetime_format = %b %d %H:%M:%S
+#
+#
+
+[<%= node[:opsworks][:stack][:name] + "_cakephp_error_log" %>]
+datetime_format = %Y-%m-%d %H:%M:%S
+timezone = UTC
+multi_line_start_pattern = {datetime_format}
+log_group_name = <%= node[:opsworks][:stack][:name].gsub(' ','_') + "_cakephp_error_log" %>
+file = <%= node[:cwlogs][:cakephp_error_log] %>
+log_stream_name = <%= node[:opsworks][:instance][:hostname] + "_cakephp_error_log" %>
+
+[<%= node[:opsworks][:stack][:name] + "_apache_error_log" %>]
+datetime_format = %Y-%m-%d %H:%M:%S
+timezone = UTC
+multi_line_start_pattern = {datetime_format}
+log_group_name = <%= node[:opsworks][:stack][:name].gsub(' ','_') + "_apache_error_log" %>
+file = <%= node[:cwlogs][:apache_error_log] %>
+log_stream_name = <%= node[:opsworks][:instance][:hostname] + "_apache_error_log" %>
