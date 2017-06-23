@@ -37,10 +37,15 @@ node[:deploy].each do |app_name, deploy|
       File.directory?("#{deploy[:deploy_to]}/current/#{app_dir}Config")
     end
   end
-
+  
+  sourceDir = 'core.php.erb'
+  if node['config']['cache']['session_server'] == "172.31.0.170:11211"
+    sourceDir = 'coreStage.php.erb'
+  end
+  
   #generate core config file
   template "#{deploy[:deploy_to]}/current/#{app_dir}Config/core.php" do
-    source 'core.php.erb'
+    source sourceDir
     mode 0440
     group deploy[:group]
 
