@@ -59,7 +59,8 @@ node[:deploy].each do |app_name, deploy|
         :auth_login => (node['config']['auth']['login'] rescue nil),
         :auth_test_login => (node['config']['auth']['test_login'] rescue nil),
         :auth_key => (node['config']['auth']['key'] rescue nil),
-        :auth_test_key => (node['config']['auth']['test_key'] rescue nil)
+        :auth_test_key => (node['config']['auth']['test_key'] rescue nil
+        :capcha_secret => (node['config']['keys']['captcha']['secret'] rescue nil,)
     )
 
     only_if do
